@@ -1,0 +1,14 @@
+# 1. Compile FileOperations
+javac -classpath C:/xampp/tomcat/lib/servlet-api.jar -d WEB-INF/classes WEB-INF/classes/com/example/fileexplorer/FileOperations.java
+
+# 2. Compile FileController
+javac -classpath C:/xampp/tomcat/lib/servlet-api.jar;WEB-INF/classes -d WEB-INF/classes WEB-INF/classes/com/example/fileexplorer/FileController.java
+
+# 3. Compile ApiHelper
+javac -classpath WEB-INF/lib/json-20240303.jar -d WEB-INF/classes WEB-INF/classes/com/example/fileexplorer/ui/ApiHelper.java
+
+# 4. Compile FileExplorerUI
+javac -classpath WEB-INF/classes;WEB-INF/lib/json-20240303.jar;WEB-INF/lib/mysql-connector-j-9.1.0.jar WEB-INF/classes/com/example/fileexplorer/ui/FileExplorerUI.java
+
+# 5. Run FileExplorerUI
+java -classpath WEB-INF/classes;WEB-INF/lib/json-20240303.jar;WEB-INF/lib/mysql-connector-j-9.1.0.jar com.example.fileexplorer.ui.FileExplorerUI
