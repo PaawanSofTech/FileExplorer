@@ -14,7 +14,6 @@ public class ApiHelper {
 
         int responseCode = conn.getResponseCode();
 
-        // Ignore all response codes and proceed to fetch data
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder response = new StringBuilder();
         String output;

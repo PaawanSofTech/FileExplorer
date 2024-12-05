@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 public class FileMetadataLogger {
 
-    // Save file metadata to the database
     public static void saveFileMetadata(String name, String path, String type, long size, long lastModified) {
         String sql = "INSERT INTO FileMetadata (name, path, type, size, last_modified) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -23,7 +22,6 @@ public class FileMetadataLogger {
         }
     }
 
-    // Fetch metadata for a specific file or folder
     public static void fetchFileMetadata(String name) {
         String sql = "SELECT * FROM FileMetadata WHERE name LIKE ?";
         try (Connection connection = DatabaseConnection.getConnection();

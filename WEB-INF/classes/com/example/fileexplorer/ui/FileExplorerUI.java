@@ -32,7 +32,6 @@ public class FileExplorerUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Directory Selection
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fileChooser.setDialogTitle("Select Root Directory");
@@ -47,7 +46,6 @@ public class FileExplorerUI extends JFrame {
 
         currentDirectory = rootFile;
 
-        // File Tree
         fileTree = new JTree(createTreeNodes(rootFile));
         fileTree.addTreeSelectionListener(e -> {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) fileTree.getLastSelectedPathComponent();
@@ -70,9 +68,9 @@ public class FileExplorerUI extends JFrame {
         };
         
         fileTable = new JTable(tableModel);
-        fileTable.setFocusable(false); // Prevent focus on table cells
+        fileTable.setFocusable(false);
         fileTable.setComponentPopupMenu(createContextMenu());
-        // Add double-click listener for the file table
+
         fileTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -84,11 +82,9 @@ public class FileExplorerUI extends JFrame {
                         File selectedFile = new File(currentDirectory, fileName);
 
                         if (selectedFile.isDirectory()) {
-                            // If it's a folder, open it in the app (update table and tree)
                             currentDirectory = selectedFile;
                             updateTable(currentDirectory);
                         } else if (selectedFile.isFile()) {
-                            // If it's a file, open it using the system's default application
                             try {
                                 Desktop.getDesktop().open(selectedFile);
                             } catch (IOException ex) {
@@ -172,7 +168,6 @@ public class FileExplorerUI extends JFrame {
             }
         });
 
-        // Populate Initial Table
         updateTable(rootFile);
 
         setVisible(true);
@@ -211,7 +206,6 @@ public class FileExplorerUI extends JFrame {
     }
 
     private void createFileOrFolder() {
-        // Prompt user to choose file or folder
         String[] options = { "File", "Folder" };
         int choice = JOptionPane.showOptionDialog(
                 this,
@@ -228,7 +222,6 @@ public class FileExplorerUI extends JFrame {
             return; // User closed the dialog, do nothing
         }
     
-        // Ask for the name of the file/folder
         String name = JOptionPane.showInputDialog("Enter name for new " + options[choice] + ":");
         if (name != null && !name.trim().isEmpty()) {
             File newFile = new File(currentDirectory, name.trim());

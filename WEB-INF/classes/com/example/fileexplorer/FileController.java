@@ -17,7 +17,7 @@ public class FileController extends HttpServlet {
 
         File[] files = directory.listFiles();
         if (files == null) {
-            return "[]"; // Return empty list if directory is inaccessible
+            return "[]";
         }
 
         StringBuilder json = new StringBuilder("[");
@@ -40,7 +40,6 @@ public class FileController extends HttpServlet {
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String path = req.getParameter("path");
 
-    // Decode the path parameter to handle URL encoding
     if (path != null) {
         path = java.net.URLDecoder.decode(path, "UTF-8");
     }
@@ -64,7 +63,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
         String operation = req.getParameter("operation");
         String path = req.getParameter("path");
 
-        // Decode the path parameter
         if (path != null) {
             path = java.net.URLDecoder.decode(path, "UTF-8");
         }
